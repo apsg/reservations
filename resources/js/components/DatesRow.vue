@@ -20,7 +20,7 @@
             }
         },
 
-        data() {
+        data () {
             return {
                 range: {
                     start: null,
@@ -29,10 +29,11 @@
             };
         },
 
-        methods: {
+        mounted () {
+            console.log(this.$store.range);
+        },
 
-
-        }
+        methods: {}
     }
 </script>
 

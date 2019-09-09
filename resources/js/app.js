@@ -8,9 +8,18 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import moment from 'moment';
+
+import Vuex from 'vuex';
+import store from './store';
+
 import VRangeSelector from 'vuelendar/components/vl-range-selector';
 import VDaySelector from 'vuelendar/components/vl-day-selector';
 import DraggableCal from 'vue-draggable-cal';
+
+Vue.use(Vuex);
+
+console.log(moment().range('2019-01-01', '2019-01-04'));
 
 /**
  * The following block of code may be used to automatically register your
@@ -35,4 +44,5 @@ Vue.component('draggable-cal', DraggableCal);
 
 const app = new Vue({
     el: '#app',
+    store: new Vuex.Store(store)
 });
