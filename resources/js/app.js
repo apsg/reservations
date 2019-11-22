@@ -12,13 +12,11 @@ import moment from 'moment';
 
 import Vuex from 'vuex';
 import store from './store';
-
-import VRangeSelector from 'vuelendar/components/vl-range-selector';
-import VDaySelector from 'vuelendar/components/vl-day-selector';
 import DraggableCal from 'vue-draggable-cal';
-
+import VCalendar from 'v-calendar';
 
 Vue.use(Vuex);
+Vue.use(VCalendar);
 
 
 /**
@@ -32,8 +30,6 @@ Vue.use(Vuex);
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('range-selector', VRangeSelector);
-Vue.component('day-selector', VDaySelector);
 Vue.component('draggable-cal', DraggableCal);
 
 /**

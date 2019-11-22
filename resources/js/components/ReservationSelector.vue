@@ -3,11 +3,15 @@
 
         <div>{{ range.start }} : {{ range.end }}</div>
 
-        <range-selector
-            :start-date.sync="range.start"
-            :end-date.sync="range.end"
-            :disabled-dates="disabled_dates">
-        </range-selector>
+        <v-date-picker
+            :min-date="new Date()"
+            mode="range"
+            is-inline
+            v-model="range"
+            :columns="$screens({ default: 1, md: 2, lg: 3 })"
+            :is-expanded="$screens({ default: true, xl: false })"
+            :disabled-dates="['2019-12-12']"
+        ></v-date-picker>
     </div>
 </template>
 
