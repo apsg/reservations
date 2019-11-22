@@ -5,13 +5,15 @@
 
         <range-selector
             :start-date.sync="range.start"
-            :end-date.sync="range.end"></range-selector>
+            :end-date.sync="range.end"
+            :disabled-dates="disabled_dates">
+        </range-selector>
     </div>
 </template>
 
 <script>
     export default {
-        name: "DatesRow",
+        name: "ReservationSelector",
 
         props: {
             dates: {
@@ -25,12 +27,15 @@
                 range: {
                     start: null,
                     end: null,
-                }
+                },
+
+                disabled_dates: {},
             };
         },
 
         mounted () {
-            console.log(this.$store.range);
+
+            axios.get('/a/disabled-dates').then(r => this.disabled_dates = r.data);
         },
 
         methods: {}

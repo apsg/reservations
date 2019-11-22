@@ -17,9 +17,9 @@ import VRangeSelector from 'vuelendar/components/vl-range-selector';
 import VDaySelector from 'vuelendar/components/vl-day-selector';
 import DraggableCal from 'vue-draggable-cal';
 
+
 Vue.use(Vuex);
 
-console.log(moment().range('2019-01-01', '2019-01-04'));
 
 /**
  * The following block of code may be used to automatically register your

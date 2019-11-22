@@ -12,10 +12,8 @@
                             </div>
                         @endif
 
-                        <dates-row :dates="['2019-01-01', '2019-01-02']"></dates-row>
+                        <reservation-selector :dates="['2019-01-01', '2019-01-02']"></reservation-selector>
 
-                        <draggable-cal></draggable-cal>
-                        <draggable-cal></draggable-cal>
                     </div>
                 </div>
             </div>
