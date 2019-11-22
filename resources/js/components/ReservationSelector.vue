@@ -1,24 +1,51 @@
 <template>
     <div>
 
-        <div>{{ range.start }} : {{ range.end }}</div>
-
+        <h2 class="heading">
+            <span>Krok 1</span>
+            Wybierz datę:
+        </h2>
         <v-date-picker
+            ref="picker"
             :min-date="new Date()"
             mode="range"
             is-inline
             v-model="range"
             :columns="$screens({ default: 1, md: 2, lg: 3 })"
             :is-expanded="$screens({ default: true, xl: false })"
-            :disabled-dates="['2019-12-12']"
+            :disabled-dates="datesToObjects(dates)"
         ></v-date-picker>
+        <div v-if="step > 0" class="my-3">
+            <strong>Wybrano datę:</strong>
+            od {{ formatDate(range.start) }} do {{ formatDate(range.end) }}
+        </div>
+
+        <div v-if="step > 0">
+            <h2 class="heading">
+                <span>Krok 2</span>
+                Podaj liczbę osób:
+            </h2>
+
+            <plus-minus :value="people" :min="1" :max="10" @input="v => people = v"></plus-minus>
+
+            <div>Wybrano: {{ people }}</div>
+
+
+            <button
+                class="btn btn-primary"
+                @click.prevent="check"
+            >Sprawdź <i class="fa fa-search"></i></button>
+        </div>
+
     </div>
 </template>
 
 <script>
+    import PlusMinus from "./PlusMinus";
+
     export default {
         name: "ReservationSelector",
-
+        components: {PlusMinus},
         props: {
             dates: {
                 required: true,
@@ -32,17 +59,50 @@
                     start: null,
                     end: null,
                 },
-
-                disabled_dates: {},
+                people: 1,
             };
         },
 
-        mounted () {
+        methods: {
+            datesToObjects (dates) {
+                return dates.map(function (d) {
+                    return {
+                        start: new Date(d),
+                        end: new Date(d)
+                    };
+                });
+            },
 
-            axios.get('/a/disabled-dates').then(r => this.disabled_dates = r.data);
+            /**
+             * @param Date date
+             */
+            formatDate (date) {
+                return date.getFullYear() + '-'
+                    + date.getMonth() + '-'
+                    + date.getDate();
+            },
+
+            check () {
+
+                axios.post('/a/check-dates', {
+                    start: this.formatDate(this.range.start),
+                    end: this.formatDate(this.range.end),
+                    peple: this.people
+                }).then(() => {
+                });
+
+            }
         },
 
-        methods: {}
+        computed: {
+            step () {
+
+                if (this.range.start != null)
+                    return 1;
+
+                return 0;
+            }
+        }
     }
 </script>
 

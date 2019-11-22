@@ -10810,3 +10810,14 @@ a.text-dark:focus {
   font-weight: 800;
 }
 
+.heading {
+  font-family: "Nunito", sans-serif;
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.heading span {
+  font-weight: 700;
+  color: #f6993f;
+}
+

@@ -12,7 +12,7 @@
                             </div>
                         @endif
 
-                        <reservation-selector :dates="['2019-01-01', '2019-01-02']"></reservation-selector>
+                        <reservation-selector :dates="{{ $disabledDates }}"></reservation-selector>
 
                     </div>
                 </div>
