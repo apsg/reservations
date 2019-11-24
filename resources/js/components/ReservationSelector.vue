@@ -85,9 +85,9 @@
             check () {
 
                 axios.post('/a/check-dates', {
-                    start: this.formatDate(this.range.start),
-                    end: this.formatDate(this.range.end),
-                    peple: this.people
+                    from: this.formatDate(this.range.start),
+                    to: this.formatDate(this.range.end),
+                    people: this.people
                 }).then(() => {
                 });
 

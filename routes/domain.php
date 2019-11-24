@@ -10,6 +10,7 @@ Route::group([
 ], function () {
 
     Route::get('disabled-dates', ReservationsController::class . '@disabledDates');
+    Route::post('check-dates', ReservationsController::class . '@check');
 
 });
 
