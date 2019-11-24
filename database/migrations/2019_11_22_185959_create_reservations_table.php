@@ -12,7 +12,7 @@ class CreateReservationsTable extends Migration
         Schema::create(TablesHelper::RESERVATIONS, function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->unsignedInteger('client_id');
+            $table->bigInteger('client_id')->unsigned();
             $table->foreign('client_id')
                 ->references('id')
                 ->on(TablesHelper::CLIENTS)
@@ -22,11 +22,9 @@ class CreateReservationsTable extends Migration
             $table->date('from');
             $table->date('to');
 
-            $table->unsignedInteger('room_id')->nullable();
-            $table->foreign('room_id')
-                ->references('id')
-                ->on(TablesHelper::ROOMS)
-                ->onDelete('SET NULL');
+            $table->bigInteger('room_id')
+                ->unsigned()
+                ->nullable();
 
             $table->string('state');
 
